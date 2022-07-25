@@ -36,7 +36,6 @@ class Food:
         canvas.create_oval(x, y, x + SPACE_SIZE, y + SPACE_SIZE, fill =FOOD_COLOR, tag="food")
 
 
-
 def next_turn(snake, food):
     
     x, y = snake.coordinates[0]
@@ -113,6 +112,17 @@ def check_collisions(snake):
 def game_over():
     canvas.delete(ALL)
     canvas.create_text(canvas.winfo_width()/2, canvas.winfo_height()/2, font=("consolas",70), text="GAME OVER", fill="red", tag= "gameover")
+    B = Button(window, text = "Play Again", font = ("consolas", 30), command = reset)
+    B.place(x = (canvas.winfo_width()*0.40), y = (canvas.winfo_height()*0.7))
+
+def reset():
+    canvas.delete(ALL)
+    global direction, score, snake, food
+    direction = "down"
+    score = 0
+    next_turn(snake, food)
+    
+
 
 window =Tk()
 window.title("Snake game")
